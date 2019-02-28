@@ -1,0 +1,16 @@
+RewriteEngine on
+
+# if a directory or a file exists, use it directly
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# otherwise forward it to index.php
+RewriteRule . index.php
+
+#prevent people form being able to load these files
+RedirectMatch 404 /\.git
+RedirectMatch 404 /\.well-known
+RedirectMatch 404 /\.htaccess_stage
+RedirectMatch 404 /\.htaccess_prod
+
+

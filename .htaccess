@@ -1,0 +1,18 @@
+# Options All -Indexes
+Options -Indexes
+
+<IfModule mod_rewrite.c> 
+  RewriteEngine on
+  #RewriteRule ^index\.php$ web/index [PT]
+  RewriteCond %{REQUEST_URI} !^web
+  RewriteRule ^(.*)$ web/$1 [L] 
+</IfModule>
+
+# Deny accessing below extensions
+<Files ~ "(.json|.lock|.git)">
+Order allow,deny
+Deny from all
+</Files>
+
+# Deny accessing dot files
+RewriteRule (^\.|/\.) - [F]
